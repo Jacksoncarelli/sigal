@@ -40,9 +40,19 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('recurso', 'Recuso disponivel:', array('class' => 'col-md-2 control-label')) !!}
+    {!! Form::label('recurso', 'Recurso disponivel:', array('class' => 'col-md-2 control-label')) !!}
     <div class="col-sm-4">
         {!! Form::text('recurso', Input::old('recurso'), array('class' => 'form-control', 'placeholder' => 'Recurso disponivel')) !!}
+    </div>
+
+    {!! Form::label('descricao', 'Descricao:', array('class' => 'col-md-2 control-label')) !!}
+    <div class="col-sm-4">
+        {!! Form::text('descricao', Input::old('descricao'), array('class' => 'form-control', 'placeholder' => '(Opcional)')) !!}
+    </div>
+
+    {!! Form::label('obs', 'Obs:', array('class' => 'col-md-2 control-label')) !!}
+    <div class="col-sm-4">
+        {!! Form::text('obs', Input::old('obs'), array('class' => 'form-control', 'placeholder' => '(Opcional)')) !!}
     </div>
 </div>
 

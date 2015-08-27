@@ -7,25 +7,16 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Agendamento;
-use Illuminate\Support\Facades\Input;
-
-
-class AgendamentosController extends Controller
+class SalasTemRecursosController extends Controller
 {
-    protected $agendamentos;
-
-    public function __construct(Agendamento $agendamentos)
-    {
-        $this->agendamentos = $agendamentos;
-        $this->middleware('auth');
-    }
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
     public function index()
     {
-        $agendamentos = $this->agendamentos->all();
-
-        return view('agendamentos.index', compact('agendamentos'));
+        //
     }
 
     /**
