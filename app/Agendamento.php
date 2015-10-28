@@ -8,5 +8,5 @@ class Agendamento extends Model
 {
     protected $table = 'agendamentos';
 
-    protected $fillable = array('usuario_id','sala_id','tipo','descricao','dia','hora_inicio','hora_fim');
+    protected $fillable = array('prof_id', 'usuario_id','sala_id','tipo','descricao','dia','hora_inicio','hora_fim');
 }

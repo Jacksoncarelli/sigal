@@ -1,0 +1,1 @@
+agendamentos.index os eventos não estão pegando o formato utf8
