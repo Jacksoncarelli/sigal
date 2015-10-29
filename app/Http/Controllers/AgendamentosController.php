@@ -26,13 +26,6 @@ class AgendamentosController extends Controller
         $this->agendamentos = $agendamentos;
         $this->middleware('auth');
     }
-
-    public function index()
-    {
-        $agendamentos = $this->agendamentos->all();
-
-        return view('agendamentos.index', compact('agendamentos'));
-    }
     
     private function getHours()
     {
