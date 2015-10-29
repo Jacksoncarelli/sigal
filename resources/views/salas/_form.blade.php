@@ -40,15 +40,7 @@
 </div>
 
 <div class="form-group">
-<<<<<<< HEAD
-<<<<<<< HEAD
-    {!! Form::label('recurso', 'Recuso Disponível:', array('class' => 'col-md-2 control-label')) !!}
-=======
     {!! Form::label('recurso', 'Recurso disponivel:', array('class' => 'col-md-2 control-label')) !!}
->>>>>>> jeffesongouveia/master
-=======
-    {!! Form::label('recurso', 'Recurso Disponível:', array('class' => 'col-md-2 control-label')) !!}
->>>>>>> refs/remotes/jeffesongouveia/master
     <div class="col-sm-4">
         {!! Form::text('recurso', Input::old('recurso'), array('class' => 'form-control', 'placeholder' => 'Recurso disponível')) !!}
     </div>
