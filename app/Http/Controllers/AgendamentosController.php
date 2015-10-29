@@ -27,13 +27,13 @@ class AgendamentosController extends Controller
         $this->middleware('auth');
     }
 
-<<<<<<< HEAD
     public function index()
     {
         $agendamentos = $this->agendamentos->all();
 
         return view('agendamentos.index', compact('agendamentos'));
-=======
+    }
+    
     private function getHours()
     {
         //cria um array de horas e coloca os horarios das 07:00 até as 22:00 com intervalo de 30 min
@@ -90,7 +90,6 @@ class AgendamentosController extends Controller
         $horas = $this->getHours();
 
         return view('agendamentos.index', compact('agendamentos', 'horas', 'predios', 'salas', 'profs'));
->>>>>>> refs/remotes/jeffesongouveia/master
     }
 
     /**
