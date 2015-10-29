@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Curso;
+use App\Recurso;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,9 +17,14 @@ class SalasController extends Controller
 {
 
     protected $salas;
+    protected $recursos;
+    protected $salasTemRecursos;
 
-    public function __construct(Sala $sala) {
+    public function __construct(Sala $sala, Recurso $recurso) {
         $this->salas = $sala;
+        $this->recursos = $recurso;
+        //$this->salasTemRecursos = $salasTemRecursos;
+
         $this->middleware('auth');
     }
 
@@ -60,9 +66,19 @@ class SalasController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
         $input = $request->all();
 
         $this->salas->create($input);
+=======
+        $sala = $request->except('recurso');
+        $recurso = $request->only('recurso', 'descricao', 'obs');
+
+        $this->recursos->create($recurso);
+        $this->salas->create($sala);
+
+
+>>>>>>> jeffesongouveia/master
 
         return redirect()->route('salas.index');
     }
