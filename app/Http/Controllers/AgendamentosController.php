@@ -191,6 +191,8 @@ class AgendamentosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->agendamentos->find($id)->delete();
+
+        return redirect()->route('agendamentos.index');
     }
 }

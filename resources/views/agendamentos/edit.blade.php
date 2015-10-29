@@ -40,6 +40,11 @@
                         $('.modal-backdrop').fadeOut(500);
                         $('.modal-backdrop .in').fadeOut(500);
                     }
+
+                    $('#hora_inicio').change(function() {
+                        //var hora_inicio = $('#hora_inicio option:selected').val();
+                        console.log('hora_inicio');
+                    }).change();
                 </script>
             </div>
         </div>
