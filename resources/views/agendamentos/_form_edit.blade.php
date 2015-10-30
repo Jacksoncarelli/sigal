@@ -10,7 +10,7 @@
 <div class="form-group">
     {!! Form::label('hora_inicio', 'Hora início: ', array('class' => 'col-md-3 control-label')) !!}
     <div class="col-sm-3">
-        {!! Form::select('hora_inicio', $horas, $agendaEdit->hora_inicio, array('class' => 'form-control')) !!}
+        {!! Form::select('hora_inicio', $horas, $agendaEdit->hora_inicio, array('class' => 'form-control', 'onchange' => "setHoraFim(this)")) !!}
     </div>
 </div>
 

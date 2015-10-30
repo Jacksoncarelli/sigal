@@ -36,15 +36,27 @@
                         }
                     });
 
-                    function fechar(){
+                    function fechar() {
                         $('.modal-backdrop').fadeOut(500);
                         $('.modal-backdrop .in').fadeOut(500);
                     }
 
-                    $('#hora_inicio').change(function() {
-                        //var hora_inicio = $('#hora_inicio option:selected').val();
-                        console.log('hora_inicio');
-                    }).change();
+                    function setHoraFim(select) {
+                        $('#hora_fim option').each(function() {
+                            //se a hora for menor que a de hora_inicio ela é oculta
+                            if($(this).val() < select.value) {
+                                $(this).hide();
+                            } else {
+                                $(this).show();
+                            }
+                        });
+
+                        /*
+                        pega o select hora_fim e define a opção com a hora que o select hora_inicio tem como selecionada
+                        como a opção selected
+                         */
+                        $('#hora_fim option[value="' + select.value + '"]').prop('selected', true);
+                    }
                 </script>
             </div>
         </div>
