@@ -66,19 +66,8 @@ class SalasController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< HEAD
         $input = $request->all();
-
         $this->salas->create($input);
-=======
-        $sala = $request->except('recurso');
-        $recurso = $request->only('recurso', 'descricao', 'obs');
-
-        $this->recursos->create($recurso);
-        $this->salas->create($sala);
-
-
->>>>>>> jeffesongouveia/master
 
         return redirect()->route('salas.index');
     }
