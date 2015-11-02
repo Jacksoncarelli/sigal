@@ -1,23 +1,25 @@
 {{ csrf_field() }}
 
-<div class="form-group">
-    {!! Form::label('dia', 'Selecione o dia: ', array('class' => 'col-md-3 control-label')) !!}
-    <div class="col-md-3">
-        {!! Form::text('datepicker', $agendaEdit->dia, array('id' => 'datepicker', 'name' => 'datepicker', 'class' => 'form-control')) !!}
+<div id="datepair_edit">
+    <div class="form-group">
+        {!! Form::label('dia', 'Selecione o dia: ', array('class' => 'col-md-3 control-label')) !!}
+        <div class="col-md-3">
+            {!! Form::text('datepicker', $agendaEdit->dia, array('id' => 'datepicker', 'name' => 'datepicker', 'class' => 'form-control')) !!}
+        </div>
     </div>
-</div>
 
-<div class="form-group">
-    {!! Form::label('hora_inicio', 'Hora início: ', array('class' => 'col-md-3 control-label')) !!}
-    <div class="col-sm-3">
-        {!! Form::select('hora_inicio', $horas, $agendaEdit->hora_inicio, array('class' => 'form-control', 'onchange' => "setHoraFim(this)")) !!}
+    <div class="form-group">
+        {!! Form::label('hora_inicio', 'Hora início: ', array('class' => 'col-md-3 control-label')) !!}
+        <div class="col-sm-3">
+            {!! Form::text('hora_inicio', $agendaEdit->hora_inicio, array('class' => 'form-control time start')) !!}
+        </div>
     </div>
-</div>
 
-<div class="form-group">
-    {!! Form::label('hora_fim', 'Hora fim: ', array('class' => 'col-md-3 control-label')) !!}
-    <div class="col-sm-3">
-        {!! Form::select('hora_fim', $horas, $agendaEdit->hora_fim, array('class' => 'form-control')) !!}
+    <div class="form-group">
+        {!! Form::label('hora_fim', 'Hora fim: ', array('class' => 'col-md-3 control-label')) !!}
+        <div class="col-sm-3">
+            {!! Form::text('hora_fim', $agendaEdit->hora_fim, array('class' => 'form-control time end')) !!}
+        </div>
     </div>
 </div>
 

@@ -6,16 +6,12 @@ use App\Professor;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 use App\Agendamento;
 use App\Sala;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Session;
-
 
 class AgendamentosController extends Controller
 {
@@ -26,33 +22,9 @@ class AgendamentosController extends Controller
         $this->agendamentos = $agendamentos;
         $this->middleware('auth');
     }
-    
-    private function getHours()
-    {
-        //cria um array de horas e coloca os horarios das 07:00 até as 22:00 com intervalo de 30 min
-        $horas = array();
-
-        for($i = 7; $i <= 22; $i++ )
-        {
-            if($i < 10)
-            {
-                $horas = array_add($horas, "0$i:00", "0$i:00");
-                $horas = array_add($horas, "0$i:30", "0$i:30");
-            } else
-            {
-                $horas = array_add($horas, "$i:00", "$i:00");
-                $horas = array_add($horas, "$i:30", "$i:30");
-            }
-        }
-
-        //remove o ultimo valor do array, que nesse caso é a hora 22:30
-        array_pop($horas);
-
-        return $horas;
-    }
 
     /**
-     * Formata um string de dia para o formato especificado passado.
+     * Formata uma string de dia para o formato especificado passado.
      *
      * @param String $dia O dia que se quer obter com outra máscara, deve ter o separador - (hifen)
      * @param String $mask
@@ -75,14 +47,13 @@ class AgendamentosController extends Controller
         $agendamentos = Agendamento::all()->jsonSerialize();
 
         $i = 0;
-        foreach ($agendamentos as $agenda) {
+        foreach ($agendamentos as $agenda)
+        {
             $agendamentos[$i]['tipo'] = utf8_encode($agenda['tipo']);
             $i++;
         }
 
-        $horas = $this->getHours();
-
-        return view('agendamentos.index', compact('agendamentos', 'horas', 'predios', 'salas', 'profs'));
+        return view('agendamentos.index', compact('agendamentos', 'predios', 'salas', 'profs'));
     }
 
     /**
@@ -146,6 +117,7 @@ class AgendamentosController extends Controller
         $salas = Sala::all()->lists('numero', 'id');
         $profs = Professor::all()->lists('nome', 'id');
 
+        //formata a data pega no banco yyyy-mm-dd para dd/mm/yyyy
         $agendaEdit->dia = $this->formatDate($agendaEdit->dia, 'd/m/Y');
 
         //retorna apenas os 5 primeiros caracteres
@@ -153,9 +125,7 @@ class AgendamentosController extends Controller
         $agendaEdit->hora_inicio = substr($agendaEdit->hora_inicio, 0, 5);
         $agendaEdit->hora_fim = substr($agendaEdit->hora_fim, 0, 5);
 
-        $horas = $this->getHours();
-
-        return view('agendamentos.edit', compact('agendaEdit', 'horas', 'predios', 'salas', 'profs'));
+        return view('agendamentos.edit', compact('agendaEdit', 'predios', 'salas', 'profs'));
     }
 
     /**

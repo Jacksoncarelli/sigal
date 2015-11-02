@@ -4,17 +4,19 @@
     {!! Form::hidden('dia', '', array('id' => 'dia')) !!}
 </div>
 
-<div class="form-group">
-    {!! Form::label('hora_inicio', 'Hora início: ', array('class' => 'col-md-3 control-label')) !!}
-    <div class="col-sm-3">
-        {!! Form::text('hora_inicio', '', array('id' => 'hora_inicio', 'class' => 'form-control', 'maxlength' => '5', 'readonly' => 'true')) !!}
+<div id="datepair_insert">
+    <div class="form-group">
+        {!! Form::label('hora_inicio', 'Hora início: ', array('class' => 'col-md-3 control-label')) !!}
+        <div class="col-sm-3">
+            {!! Form::text('hora_inicio', '', array('id' => 'hora_inicio', 'class' => 'form-control time start', 'maxlength' => '5')) !!}
+        </div>
     </div>
-</div>
 
-<div class="form-group">
-    {!! Form::label('hora_fim', 'Hora fim: ', array('class' => 'col-md-3 control-label')) !!}
-    <div class="col-sm-3">
-        {!! Form::select('hora_fim', $horas, Input::old('hora_inicio'), array('class' => 'form-control')) !!}
+    <div class="form-group">
+        {!! Form::label('hora_fim', 'Hora fim: ', array('class' => 'col-md-3 control-label')) !!}
+        <div class="col-sm-3">
+            {!! Form::text('hora_fim', '', array('id' => 'hora_fim', 'class' => 'form-control time end', 'maxlength' => '5')) !!}
+        </div>
     </div>
 </div>
 

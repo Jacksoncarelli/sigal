@@ -3,10 +3,16 @@
 @section('link')
     <link rel="stylesheet" type="text/css" href="{{ asset('/bower_components/fullcalendar/dist/fullcalendar.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/datepicker/jquery-ui.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/timepicker/jquery.timepicker.css') }}">
 @endsection
 
 @section('script')
     <script src="{{ asset('/assets/datepicker/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('/timepicker/jquery.timepicker.min.js') }}"></script>
+    <script src="{{ asset('/datepair/datepair.min.js') }}"></script>
+    <script src="{{ asset('/datepair/jquery.datepair.min.js') }}"></script>
+
+    <script src="{{ asset('/js/dateformat.min.js') }}"></script>
 
     <script src="{{ asset('/bower_components/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('/bower_components/fullcalendar/dist/fullcalendar.min.js') }}"></script>
@@ -30,7 +36,6 @@
                 minTime: '07:00',
                 maxTime: '22:30',
                 editable: false,
-                hiddenDays: [0], //oculta o Domingo
                 aspectRatio: 3.25,
 
                 /* o formato da hora de inicio e fim do Fullcalendar é a seguinte
@@ -73,7 +78,12 @@
 
                             //passa para o form a data e a hora
                             $('#myModalLabel').text('Data: ' + date.format('DD/MM/YYYY'));
-                            $('#hora_inicio').val(date.format('HH:mm'));
+                            $('#hora_inicio').timepicker('setTime', date.format('hh:mm'));
+
+                            var newDate = new Date(date.format('YYYY-MM-DD') + ' ' + date.format('hh:mm'));
+                            newDate.setHours(newDate.getHours() + 1);
+
+                            $('#hora_fim').timepicker('setTime', newDate.getHours + ':' + newDate.getMinutes());
 
                             $('#createModal').modal('show');
                         }
@@ -89,6 +99,13 @@
                 }
             });
         });
+
+        $('#datepair_insert .time').timepicker({
+            'showDuration': true,
+            'timeFormat': 'H:i'
+        });
+
+        $('#datepair_insert').datepair();
     </script>
 @endsection
 
