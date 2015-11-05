@@ -23,14 +23,14 @@
 <div class="form-group">
     {!! Form::label('predio', 'Prédio:', array('class' => 'col-md-2 control-label')) !!}
     <div class="col-sm-2">
-        {!! Form::select('predio_id', $predios, Input::old('predio_id'), array('class' => 'form-control')) !!}
+        {!! Form::select('predio_id', $predios, Input::old('predio_id'), array('id' => 'predio_id', 'class' => 'form-control')) !!}
     </div>
 </div>
 
 <div class="form-group">
     {!! Form::label('sala', 'Sala:', array('class' => 'col-md-2 control-label')) !!}
     <div class="col-sm-2">
-        {!! Form::select('sala_id', $salas, Input::old('sala_id'), array('class' => 'form-control', 'id' => 'sala_id')) !!}
+        {!! Form::select('sala_id', array(), '', array('id' => 'sala_id', 'class' => 'form-control')) !!}
     </div>
 </div>
 

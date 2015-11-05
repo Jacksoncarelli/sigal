@@ -42,6 +42,10 @@ class AgendamentosController extends Controller
         //lista os prédios sem repeti-los
         $predios = DB::table('salas')->distinct()->lists('predio', 'predio');
 
+        //lista os predios e seus ids e codifica como JSON
+        $locais = DB::table('salas')->distinct()->lists('predio', 'id');
+        $locais = json_encode($locais);
+
         $salas = Sala::all()->lists('numero', 'id');
         $profs = Professor::all()->lists('nome', 'id');
         $agendamentos = Agendamento::all()->jsonSerialize();
@@ -53,7 +57,7 @@ class AgendamentosController extends Controller
             $i++;
         }
 
-        return view('agendamentos.index', compact('agendamentos', 'predios', 'salas', 'profs'));
+        return view('agendamentos.index', compact('agendamentos', 'predios', 'locais', 'salas', 'profs'));
     }
 
     /**

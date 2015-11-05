@@ -38,16 +38,12 @@
 
                     $('#datepair_edit .time').timepicker({
                         'showDuration': true,
-                        'timeFormat': 'H:i'  //formato 24 horas, para mudar para modo americano usar g:ia
+                        'timeFormat': 'H:i',  //formato 24 horas, para mudar para modo americano usar g:ia
+                        'disableTimeRanges': [
+                            ['00:00', '07:00'],
+                            ['22:30', '23:59']
+                        ]
                     });
-
-                    /*
-                    $('#datepair_edit .date').datepicker({
-                        'format': 'm/d/yyyy',
-                        'autoclose': true
-                    });
-                    */
-
                     $('#datepair_edit').datepair();
 
                     function fechar() {

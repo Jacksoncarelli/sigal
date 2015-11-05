@@ -102,10 +102,55 @@
 
         $('#datepair_insert .time').timepicker({
             'showDuration': true,
-            'timeFormat': 'H:i'
+            'timeFormat': 'H:i',
+            'disableTimeRanges': [
+                ['00:00', '07:00'],
+                ['22:30', '23:59']
+            ]
         });
-
         $('#datepair_insert').datepair();
+
+        /*
+         * Transforma a string retornada do Controller em um JSON.
+         */
+        function arrayToJSON(arr) {
+            //troca os caracteres &quot; por "
+            arr = arr.replace(/&quot;/g, '"');
+            return $.parseJSON(arr);
+        }
+
+        /*
+         * Limpa o select de salas e coloca apenas as salas do predio selecionado como opção
+         */
+        function setSalasOnSelect() {
+            var salas = '{{ $salas }}';
+            var predios = '{{ $locais }}';
+
+            //transforma o JSON do controller num JSON decente
+            salas = arrayToJSON(salas);
+            predios = arrayToJSON(predios);
+
+            //limpa as opções do select sala
+            $('#sala_id').empty();
+
+            //define como opções apenas as salas que possuem o mesmo id do prédio
+            $.each(predios, function(id, predio) {
+                if($('#predio_id').val() == predio) {
+                    $('#sala_id').append($('<option>', {
+                        value: id,
+                        text: salas[id]
+                    }));
+                }
+            });
+        }
+
+        //chamada quando a página é carregada
+        setSalasOnSelect();
+
+        //chamada quando o usuário muda o predio
+        $('#predio_id').change(function() {
+            setSalasOnSelect()
+        });
     </script>
 @endsection
 
