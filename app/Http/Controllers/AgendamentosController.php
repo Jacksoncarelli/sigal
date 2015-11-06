@@ -43,8 +43,8 @@ class AgendamentosController extends Controller
         $predios = DB::table('salas')->distinct()->lists('predio', 'predio');
 
         //lista os predios e seus ids e codifica como JSON
-        $locais = DB::table('salas')->distinct()->lists('predio', 'id');
-        $locais = json_encode($locais);
+        $predios_ids = DB::table('salas')->distinct()->lists('predio', 'id');
+        $predios_ids = json_encode($predios_ids);
 
         $salas = Sala::all()->lists('numero', 'id');
         $profs = Professor::all()->lists('nome', 'id');
@@ -57,7 +57,7 @@ class AgendamentosController extends Controller
             $i++;
         }
 
-        return view('agendamentos.index', compact('agendamentos', 'predios', 'locais', 'salas', 'profs'));
+        return view('agendamentos.index', compact('agendamentos', 'predios', 'predios_ids', 'salas', 'profs'));
     }
 
     /**
@@ -116,6 +116,10 @@ class AgendamentosController extends Controller
             return redirect()->route('agendamentos.index');
         }
 
+        //lista os predios e seus ids e codifica como JSON
+        $predios_ids = DB::table('salas')->distinct()->lists('predio', 'id');
+        $predios_ids = json_encode($predios_ids);
+
         $agendaEdit['predio'] = DB::table('salas')->where('id', $agendaEdit->sala_id)->value('predio');
         $predios = DB::table('salas')->distinct()->lists('predio', 'predio');
         $salas = Sala::all()->lists('numero', 'id');
@@ -129,7 +133,7 @@ class AgendamentosController extends Controller
         $agendaEdit->hora_inicio = substr($agendaEdit->hora_inicio, 0, 5);
         $agendaEdit->hora_fim = substr($agendaEdit->hora_fim, 0, 5);
 
-        return view('agendamentos.edit', compact('agendaEdit', 'predios', 'salas', 'profs'));
+        return view('agendamentos.edit', compact('agendaEdit', 'predios', 'predios_ids', 'salas', 'profs'));
     }
 
     /**

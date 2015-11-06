@@ -124,7 +124,7 @@
          */
         function setSalasOnSelect() {
             var salas = '{{ $salas }}';
-            var predios = '{{ $locais }}';
+            var predios = '{{ $predios_ids }}';
 
             //transforma o JSON do controller num JSON decente
             salas = arrayToJSON(salas);
@@ -149,7 +149,7 @@
 
         //chamada quando o usuário muda o predio
         $('#predio_id').change(function() {
-            setSalasOnSelect()
+            setSalasOnSelect();
         });
     </script>
 @endsection

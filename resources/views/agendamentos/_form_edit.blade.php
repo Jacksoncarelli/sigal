@@ -26,14 +26,14 @@
 <div class="form-group">
     {!! Form::label('predio', 'Prédio:', array('class' => 'col-md-2 control-label')) !!}
     <div class="col-sm-2">
-        {!! Form::select('predio_id', $predios, $agendaEdit->predio, array('class' => 'form-control')) !!}
+        {!! Form::select('predio_id', $predios, $agendaEdit->predio, array('id' => 'edit_predio_id', 'class' => 'form-control')) !!}
     </div>
 </div>
 
 <div class="form-group">
     {!! Form::label('sala', 'Sala:', array('class' => 'col-md-2 control-label')) !!}
     <div class="col-sm-2">
-        {!! Form::select('sala_id', $salas, $agendaEdit->sala_id, array('class' => 'form-control', 'id' => 'sala_id')) !!}
+        {!! Form::select('sala_id', $salas, $agendaEdit->sala_id, array('id' => 'edit_sala_id', 'class' => 'form-control')) !!}
     </div>
 </div>
 
