@@ -51,43 +51,22 @@
                         $('.modal-backdrop .in').fadeOut(500);
                     }
 
-                    /*
-                     * Transforma a string retornada do Controller em um JSON.
-                     */
-                    function arrayToJSON(arr) {
-                        //troca os caracteres &quot; por "
-                        arr = arr.replace(/&quot;/g, '"');
-                        return $.parseJSON(arr);
-                    }
-
-                    /*
-                     * Limpa o select de salas e coloca apenas as salas do predio selecionado como opção
-                     */
-                    function setSalasOnSelect() {
-                        var salas = '{{ $salas }}';
-                        var predios = '{{ $predios_ids }}';
-
-                        //transforma o JSON do controller num JSON decente
-                        salas = arrayToJSON(salas);
-                        predios = arrayToJSON(predios);
-
-                        //limpa as opções do select sala
+                    //chamada quando o usuário muda o predio
+                    $('#edit_predio_id').change(function() {
                         $('#edit_sala_id').empty();
 
-                        //define como opções apenas as salas que possuem o mesmo id do prédio
-                        $.each(predios, function(id, predio) {
-                            if($('#edit_predio_id').val() == predio) {
+                        /* passa para a URL 'agendamentos/{predio}/get-salas' o predio selecionado
+                         * que por sua vez em routes.php vai cair na função getSalas($predio)
+                         * onde retorna o JSON 'salas'
+                         */
+                        $.get('agendamentos/' + $(this).val() + '/get-salas', function(salas) {
+                            $.each(salas, function(id, sala) {
                                 $('#edit_sala_id').append($('<option>', {
                                     value: id,
                                     text: salas[id]
                                 }));
-                            }
+                            });
                         });
-                    }
-
-                    //chamada quando o usuário muda o predio
-                    $('#edit_predio_id').change(function() {
-                        setSalasOnSelect();
                     });
                 </script>
             </div>
