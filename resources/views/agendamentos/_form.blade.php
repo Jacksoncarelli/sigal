@@ -14,27 +14,24 @@
 
         {!! Form::label('predio', 'Prédio:', array('class' => 'col-md-1 control-label')) !!}
         <div class="col-md-3">
-            {!! Form::select('predio_id', $predios, Input::old('predio_id'), array('id' => 'predio_id', 'class' => 'form-control')) !!}
+            {!! Form::select('predio_id', ['0' => 'Escolha...'] + $predios, '0', array('id' => 'predio_id', 'class' => 'form-control')) !!}
         </div>
+
         <div class="col-md-10">
             <br>
-            </div>
+        </div>
+
         {!! Form::label('hora_fim', 'Hora fim: ', array('class' => 'col-md-3 control-label')) !!}
         <div class="col-md-3">
             {!! Form::text('hora_fim', '', array('id' => 'hora_fim', 'class' => 'form-control time end', 'maxlength' => '5')) !!}
         </div>
-        {!! Form::label('sala', 'Sala:', array('class' => 'col-md-1 control-label')) !!}
 
+        {!! Form::label('sala', 'Sala:', array('class' => 'col-md-1 control-label')) !!}
         <div class="col-md-3">
             {!! Form::select('sala_id', array(), '', array('id' => 'sala_id', 'class' => 'form-control')) !!}
         </div>
     </div>
 </div>
-
-
-
-
-
 
 <div class="form-group">
     {!! Form::label('professor', 'Professor:', array('class' => 'col-md-3 control-label')) !!}

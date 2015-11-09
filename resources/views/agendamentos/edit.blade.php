@@ -51,23 +51,58 @@
                         $('.modal-backdrop .in').fadeOut(500);
                     }
 
-                    //chamada quando o usuário muda o predio
-                    $('#edit_predio_id').change(function() {
+                    function getSalas() {
+                        var predio = $('#edit_predio_id').val();
+                        var dia = $('#datepicker').val();
+                        var hora_inicio = $('#edit_hora_inicio').val();
+                        var hora_fim = $('#edit_hora_fim').val();
+
+                        //split('/') => divide o dia em um array => [dd, mm, yyyy]
+                        //reverse() => depois reverte a ordem do array =. [yyyy, mm, dd]
+                        //join() => e por fim une os valores do array com um - entre eles => yyyy-mm-dd
+                        dia = dia.split('/').reverse().join('-');
+
+                        var url = 'agendamentos/' + predio + '/' + dia + '/' + hora_inicio + '-' + hora_fim + '/get-salas';
+
                         $('#edit_sala_id').empty();
 
                         /* passa para a URL 'agendamentos/{predio}/get-salas' o predio selecionado
                          * que por sua vez em routes.php vai cair na função getSalas($predio)
                          * onde retorna o JSON 'salas'
                          */
-                        $.get('agendamentos/' + $(this).val() + '/get-salas', function(salas) {
-                            $.each(salas, function(id, sala) {
+                        $.get(url, function(salas) {
+                            if($.isEmptyObject(salas)) {
                                 $('#edit_sala_id').append($('<option>', {
-                                    value: id,
-                                    text: salas[id]
+                                    value: 0,
+                                    text: 'Sem sala',
+                                    disabled: true
                                 }));
-                            });
+                            } else {
+                                $.each(salas, function (id, sala) {
+                                    $('#edit_sala_id').append($('<option>', {
+                                        value: id,
+                                        text: sala
+                                    }));
+                                });
+                            }
                         });
-                    });
+                    }
+
+                    function callGetSalas() {
+                        if(($('#edit_hora_inicio').val().length == 5) && ($('#edit_hora_fim').val().length == 5))
+                            if($('#edit_predio_id option:selected').val() != 0)
+                                getSalas();
+                    }
+
+                    /* associa ao change a função callGetSalas() e depois desassocia
+                     * isto pq antes a função ficava acumulando a chamada da função
+                     *
+                     * OBS: a função deve ser chamada sem os parenteses ()
+                     */
+                    $('#datepicker').off('change').on('change', callGetSalas);
+                    $('#edit_predio_id').off('change').on('change', callGetSalas);
+                    $('#edit_hora_inicio').off('change').on('change', callGetSalas);
+                    $('#edit_hora_fim').off('change').on('change', callGetSalas);
                 </script>
             </div>
         </div>

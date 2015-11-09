@@ -19,10 +19,10 @@
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
-    @yield('script')
-
     <script src="{{ asset('/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('/assets/bootstrap/js/bootstrap.min.js') }}"></script>
+
+    @yield('script')
 
     <script>
         //Dialog show event handler
@@ -95,7 +95,7 @@
         </div>
     </div>
 
-@yield('script')
+    @yield('pos-script')
 
 </body>
 </html>
