@@ -26,7 +26,6 @@
                     {!! Form::open(array('route' => 'agendamentos.store', 'class' => 'form-horizontal')) !!}
                         @include('agendamentos._form')
                     {!! Form::close() !!}
-
                 </div>
             </div>
         </div>

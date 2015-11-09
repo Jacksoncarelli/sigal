@@ -37,6 +37,42 @@ class AgendamentosController extends Controller
         return date_format($date, $mask);
     }
 
+    /*
+    public function getSalas($predio)
+    {
+        $salas = Sala::all()->where('predio', $predio)->lists('numero', 'id');
+
+        return response()->json($salas);
+    }
+    */
+
+    public function getSalas($predio, $dia, $hora_inicio, $hora_fim)
+    {
+        //seleciona todos os sala_id que estão no intervalo
+        $agenda = DB::table('agendamentos')
+            ->select('sala_id')
+            ->where('dia', $dia)->where('hora_inicio', '>=', $hora_inicio)->where('hora_fim', '<=', $hora_fim)
+            ->get();
+
+        //passa para um array os resultados
+        $ids = array();
+        foreach($agenda as $id)
+        {
+            array_push($ids, $id->sala_id);
+        }
+
+        if(empty($ids))
+            $salasLivres = Sala::all()->where('predio', $predio)->lists('numero', 'id');
+        else
+            //seleciona as salas exceto as que estão no array
+            $salasLivres = Sala::all()->except($ids)->where('predio', $predio)->lists('numero', 'id');
+
+        if(empty($salasLivres))
+            return null;
+        else
+            return response()->json($salasLivres);
+    }
+
     public function index()
     {
         //lista os prédios sem repeti-los
@@ -125,13 +161,6 @@ class AgendamentosController extends Controller
         $agendaEdit->hora_fim = substr($agendaEdit->hora_fim, 0, 5);
 
         return view('agendamentos.edit', compact('agendaEdit', 'predios', 'salas', 'profs'));
-    }
-
-    public function getSalas($predio)
-    {
-        $salas = Sala::all()->where('predio', $predio)->lists('numero', 'id');
-
-        return response()->json($salas);
     }
 
     /**
