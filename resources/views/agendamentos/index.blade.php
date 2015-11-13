@@ -9,7 +9,6 @@
 @section('pos-script')
     <script src="{{ asset('/assets/datepicker/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('/timepicker/jquery.timepicker.min.js') }}"></script>
-    <script src="{{ asset('/datepair/datepair.min.js') }}"></script>
     <script src="{{ asset('/datepair/jquery.datepair.min.js') }}"></script>
 
     <script src="{{ asset('/js/dateformat.min.js') }}"></script>
@@ -37,26 +36,6 @@
             editable: false,
             aspectRatio: 3.25,
 
-            /* o formato da hora de inicio e fim do Fullcalendar é a seguinte
-             '2015-12-31T12:30:00'
-             por isso é chamado $agenda['dia']T$agenda['hora']
-             */
-            events: [
-                @foreach($agendamentos as $agenda)
-                    {
-                        id: '{{ $agenda['id'] }}',
-                        day: '{{ $agenda['dia'] }}',
-                        local: '{{ $agenda['sala_id'] }}',
-                        prof: '{{ $agenda['prof_id'] }}',
-                        tipo: '{{ $agenda['tipo'] }}',
-
-                        title: '{{ utf8_decode($agenda['tipo']) }} - {{ $profs->get($agenda['prof_id']) }}',
-                        start: '{{ $agenda['dia'] }}T{{ $agenda['hora_inicio'] }}',
-                        end: '{{ $agenda['dia'] }}T{{ $agenda['hora_fim'] }}'
-                    },
-                @endforeach
-                ],
-
             dayClick: function(date) {
                 var moment = calendar.fullCalendar('getDate');
 
@@ -78,12 +57,15 @@
                         //passa para o form a data e a hora
                         $('#myModalLabel').text('Data: ' + date.format('DD/MM/YYYY'));
                         $('#hora_inicio').timepicker('setTime', date.format('hh:mm'));
+                        $('#hora_fim').timepicker('setTime', date.format('hh:mm'));
 
+                        /*
                         var newDate = new Date(date.format('YYYY-MM-DD') + ' ' + date.format('hh:mm'));
                         newDate.setHours(newDate.getHours() + 1);
-
                         var hora_fim = newDate.getHours() + ':' + newDate.getMinutes();
+
                         $('#hora_fim').timepicker('setTime', hora_fim);
+                        */
 
                         $('#createModal').modal('show');
                     }
@@ -105,13 +87,45 @@
         $('#datepair_insert .time').timepicker({
             'showDuration': true,
             'timeFormat': 'H:i',
-            'disableTimeRanges': [
-                ['00:00', '07:00'],
-                ['22:30', '23:59']
-            ]
+            'minTime': '07:00',
+            'maxTime': '22:00'
         });
+        $('#hora_inicio').timepicker('option', 'showDuration', false);
         $('#datepair_insert').datepair();
 
+        /*
+         * Consulta via AJAX os agendamentos que estão no intervalo dos dias visualizados pelo usuário.
+         * Se está visualizando uma semana, um mês ou apenas um dia.
+         */
+        function getAgendamentos() {
+            //baseado no view pega o primeiro e o ultimo dia
+            var day_start = calendar.fullCalendar('getView').start;
+            var day_end = calendar.fullCalendar('getView').end;
+            //o ultimo dia sempre vem com um dia a mais por isso subtraio um dia
+            day_end.subtract(1, 'days');
+
+            var url = 'agendamentos/' + day_start.format() + '/' + day_end.format() + '/get-agendamentos';
+
+            $.get(url, function(agendamentos) {
+                var event = [];
+
+                if(!$.isEmptyObject(agendamentos)) {
+                    calendar.fullCalendar('removeEvents');
+                    $.each(agendamentos, function (id, item) {
+                        event['id'] = id;
+                        event['title'] = item.title;
+                        event['start'] = item.start;
+                        event['end'] = item.end;
+
+                        calendar.fullCalendar('renderEvent', event);
+                    });
+                }
+            });
+        }
+
+        /*
+         * Consulta as salas livres baseado no dia, horario e prédio selecionado
+         */
         function getSalas() {
             var predio = $('#predio_id').val();
             var dia = $('#dia').val();
@@ -143,11 +157,40 @@
             });
         }
 
+        /*
+         * Verifica se os campos horario_inicio, horario_fim e predio_id estão setados para
+         * chamar a função de consulta
+         */
         function callGetSalas() {
             if(($('#hora_inicio').val().length == 5) && ($('#hora_fim').val().length == 5))
                 if($('#predio_id option:selected').val() != 0)
                     getSalas();
         }
+
+        //para popular o calendario quando a pagina carregar
+        getAgendamentos();
+
+        //quando o usuario mudar a view clicando nos botões Mês, Semana e Dia
+        $('.fc-agendaDay-button').click(function() {
+            getAgendamentos();
+        });
+        $('.fc-agendaWeek-button').click(function() {
+            getAgendamentos();
+        });
+        $('.fc-month-button').click(function() {
+            getAgendamentos();
+        });
+
+        //quando clicado na seta de anterior e proximo
+        $('.fc-next-button').click(function() {
+            getAgendamentos();
+        });
+        $('.fc-prev-button').click(function() {
+            getAgendamentos();
+        });
+        $('.fc-today-button').click(function() {
+            getAgendamentos();
+        });
 
         //só funciona quando chama a função sem os parenteses
         //callGetSalas invés callGetSalas(), o pq só Zeus sabe :<

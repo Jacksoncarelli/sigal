@@ -12,6 +12,7 @@ use App\Sala;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Psy\Util\Json;
 
 class AgendamentosController extends Controller
 {
@@ -37,15 +38,50 @@ class AgendamentosController extends Controller
         return date_format($date, $mask);
     }
 
-    /*
-    public function getSalas($predio)
+    /**
+     * Consulta os agendamentos baseado no intervalo de dias.
+     *
+     * @param $dia_inicial
+     * @param $dia_final
+     * @return array|null
+     */
+    public function getAgendamentos($dia_inicial, $dia_final)
     {
-        $salas = Sala::all()->where('predio', $predio)->lists('numero', 'id');
+        $agendamentos = DB::table('agendamentos')
+            ->select('id', 'tipo', 'prof_id', 'dia', 'hora_inicio', 'hora_fim')
+            ->whereBetween('dia', [$dia_inicial, $dia_final])
+            ->get();
 
-        return response()->json($salas);
+        $professores = Professor::all()->lists('nome', 'id');
+
+        $agenda = array();
+        foreach($agendamentos as $item)
+        {
+            /* o formato da hora de inicio e fim do Fullcalendar é a seguinte
+             '2015-12-31T12:30:00'
+             por isso é chamado $item->diaT$item->hora
+             */
+            $agenda[$item->id]['title'] = $item->tipo . ' - ' . $professores->get($item->prof_id);
+            $agenda[$item->id]['start'] = $item->dia . 'T' . $item->hora_inicio;
+            $agenda[$item->id]['end'] = $item->dia . 'T' . $item->hora_fim;
+        }
+
+        if(empty($agenda))
+            return null;
+        else
+            return $agenda;
     }
-    */
 
+    /**
+     * Seleciona as salas usadas dentre o dia e intervalo de horas passadas
+     * e retorna todas apenas as livres.
+     *
+     * @param $predio
+     * @param $dia
+     * @param $hora_inicio
+     * @param $hora_fim
+     * @return json|null
+     */
     public function getSalas($predio, $dia, $hora_inicio, $hora_fim)
     {
         //seleciona todos os sala_id que estão no intervalo
@@ -57,9 +93,7 @@ class AgendamentosController extends Controller
         //passa para um array os resultados
         $ids = array();
         foreach($agenda as $id)
-        {
             array_push($ids, $id->sala_id);
-        }
 
         if(empty($ids))
             $salasLivres = Sala::all()->where('predio', $predio)->lists('numero', 'id');

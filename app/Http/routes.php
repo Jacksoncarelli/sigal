@@ -34,6 +34,7 @@ Route::resource('cursos', 'CursosController');
 
 Route::resource('agendamentos', 'AgendamentosController');
 Route::get('agendamentos/{predio}/{dia}/{hora_inicio}-{hora_fim}/get-salas', 'AgendamentosController@getSalas');
+Route::get('agendamentos/{dia_inicial}/{dia_final}/get-agendamentos', 'AgendamentosController@getAgendamentos');
 
 Route::get('/desenvolvedores', function () {
     return view('desenvolvedores/index');

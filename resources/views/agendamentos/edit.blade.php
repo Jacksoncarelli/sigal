@@ -39,11 +39,10 @@
                     $('#datepair_edit .time').timepicker({
                         'showDuration': true,
                         'timeFormat': 'H:i',  //formato 24 horas, para mudar para modo americano usar g:ia
-                        'disableTimeRanges': [
-                            ['00:00', '07:00'],
-                            ['22:30', '23:59']
-                        ]
+                        'minTime': '07:00',
+                        'maxTime': '22:00'
                     });
+                    $('#edit_hora_inicio').timepicker('option', 'showDuration', false);
                     $('#datepair_edit').datepair();
 
                     function fechar() {
