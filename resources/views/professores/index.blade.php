@@ -65,6 +65,8 @@
                                 @endforeach
                             </tbody>
                         </table>
+
+                        {!! $professores->render() !!}
                     </div>
                 </div>
             </div>

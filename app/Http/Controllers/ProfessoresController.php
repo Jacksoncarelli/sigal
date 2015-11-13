@@ -28,7 +28,7 @@ class ProfessoresController extends Controller
      */
     public function index()
     {
-        $professores = $this->professores->all();
+        $professores = $this->professores->paginate(10);
         $cursos = Curso::all()->lists('nome_curso', 'id');
 
         if($professores->isEmpty()) {

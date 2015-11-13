@@ -70,6 +70,8 @@
                         </tbody>
                         @endforeach
                     </table>
+
+                    {!! $salas->render() !!}
                 </div>
             </div>
         </div>
