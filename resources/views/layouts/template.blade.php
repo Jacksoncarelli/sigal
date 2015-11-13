@@ -17,7 +17,7 @@
     <link href="{{ asset('/js/sigal.js') }}" rel="script">
 
     <!-- Fonts -->
-    <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+    <!--link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'-->
 
     <script src="{{ asset('/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('/assets/bootstrap/js/bootstrap.min.js') }}"></script>
