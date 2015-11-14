@@ -1,8 +1,6 @@
 @extends('layouts.template')
 
 @section('content')
-    <script src="/js/filtro2.js"></script>
-    <script src="/js/filtro.js"></script>
 
     <section class="wrap">
         <div class="container">
@@ -21,13 +19,13 @@
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover table-striped">
+                        <table class="table table-bordered table-hover">
                             <thead>
                             <tr>
                                 <th>Nome</th>
                                 <th>Coordenador</th>
                                 <th>Fone</th>
-                                <th>Opções</th>
+                                <th width="20%">Opções</th>
                             </tr>
                             </thead>
                             <tbody>
