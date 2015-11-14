@@ -9,6 +9,7 @@
     <script src="/js/filtro2.js"></script>
     <script src="/js/filtro.js"></script>
 
+
     <section class="wrap">
         <div class="container">
             <button  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createModal">
@@ -86,13 +87,5 @@
         </script>
         </div>
     </section>
-    <br>
 
-    <div class="rodape">
-        <div class="container" >
-            <p class ="navbar-text navbar-right">Sistema de Gerenciamento Auditórios e Laboratórios - CEULJI/ULBRA </p>
-
-        <div  class ="navbar-text navbar-left"</div><span class="glyphicon glyphicon-copyright-mark"></span> &nbspCopyright 2015 -<a href="{{ url('/desenvolvedores') }}"> <span style="color: #a7abab" >Desenvolvedores</a></span>
-
-    </div>
 @stop

@@ -6315,23 +6315,17 @@ body {
   height:100%;
 }
 .tudo {
-  min-height:100%;
+  min-height:75%;
   position:relative;
 }
 
-.conteudo {
-  padding:10px;
-  padding-bottom:20px;   /* Mesma Altura do Rodap� */
-  margin-top:0px
-
-}
 .rodape {
   position:absolute;
   color: #9d9d9d;
-  bottom:0;
-  width:100%;
-  height:50px;   /* Mesma Altura do Rodap� */
   background:#213a4d;
+  bottom: -243px;
+  width: 100%;
+  height: 60px;
 }
 
 

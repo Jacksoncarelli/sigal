@@ -22,6 +22,15 @@
     <script src="{{ asset('/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('/assets/bootstrap/js/bootstrap.min.js') }}"></script>
 
+    <style>
+        body {
+            margin: 0 0 60px; /* altura do seu footer */
+            height: 730px;
+        }
+
+
+    </style>
+
     @yield('script')
 
     <script>
@@ -42,7 +51,6 @@
     </script>
 </head>
 
-<body>
 
 <div class="tudo">
     <div class="topo">
@@ -81,10 +89,11 @@
             </div>
         </nav>
     </div>
-
+<body>
     <div class="conteudo">
         @yield('content')
     </div>
+</body>
 
     <div class="rodape">
         <div class="container" >
@@ -97,5 +106,4 @@
 
     @yield('pos-script')
 
-</body>
 </html>
