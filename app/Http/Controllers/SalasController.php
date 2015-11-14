@@ -23,7 +23,6 @@ class SalasController extends Controller
     public function __construct(Sala $sala, Recurso $recurso) {
         $this->salas = $sala;
         $this->recursos = $recurso;
-        //$this->salasTemRecursos = $salasTemRecursos;
 
         $this->middleware('auth');
     }
@@ -35,7 +34,7 @@ class SalasController extends Controller
      */
     public function index()
     {
-        $salas = $this->salas->all();
+        $salas = $this->salas->paginate(10);
 
         if($salas->isEmpty()) {
             $message = 'Nao ha salas registradas ainda!';

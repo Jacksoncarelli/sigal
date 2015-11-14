@@ -49,6 +49,8 @@
                             @endforeach
                             </tbody>
                         </table>
+
+                        {!! $cursos->render() !!}
                     </div>
                 </div>
             </div>

@@ -28,7 +28,7 @@ class CursosController extends Controller
      */
     public function index()
     {
-        $cursos = $this->cursos->all();
+        $cursos = $this->cursos->paginate(10);
 
         if($cursos->isEmpty()) {
             $message = 'Nao ha cursos registrados ainda!';
