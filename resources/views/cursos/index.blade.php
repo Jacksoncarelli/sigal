@@ -1,12 +1,13 @@
 @extends('layouts.template')
 
 @section('content')
+    <script src="/js/filtro2.js"></script>
+    <script src="/js/filtro.js"></script>
 
     <section class="wrap">
         <div class="container">
-
             <button  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#createModal">
-              Adicionar novo Curso
+                Adicionar novo Curso
             </button>
 
             @include('cursos.create')
@@ -14,7 +15,7 @@
             <p></p>
             <legend></legend>
 
-            <div class="panel  panel-primary">
+            <div class="panel  panel-primary filterable">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-male fa-fw"></i>Cursos</h3>
                 </div>
@@ -30,22 +31,22 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($cursos as $curso)
-                                    <tr>
-                                        <td>{{ $curso->nome_curso }}</td>
-                                        <td>{{ $curso->coordenador }}</td>
-                                        <td>{{ $curso->fone }}</td>
-                                        <td align="center">
-                                            <button class="btn btn-editar btn-sm" data-toggle="modal"
-                                                    onclick="editModal({{ $curso->id }})">
-                                                <i class="glyphicon glyphicon-pencil"></i>  Editar
-                                            </button>
-                                            <button class="btn btn-deletar btn-sm" type="button" data-toggle="modal" data-target="#confirmDelete">
-                                                <i class="glyphicon glyphicon-trash"></i> Deletar
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                            @foreach($cursos as $curso)
+                                <tr>
+                                    <td>{{ $curso->nome_curso }}</td>
+                                    <td>{{ $curso->coordenador }}</td>
+                                    <td>{{ $curso->fone }}</td>
+                                    <td align="center">
+                                        <button class="btn btn-editar btn-sm" data-toggle="modal"
+                                                onclick="editModal({{ $curso->id }})">
+                                            <i class="glyphicon glyphicon-pencil"></i>  Editar
+                                        </button>
+                                        <button class="btn btn-deletar btn-sm" type="button" data-toggle="modal" data-target="#confirmDelete">
+                                            <i class="glyphicon glyphicon-trash"></i> Deletar
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
 
@@ -67,4 +68,5 @@
             </script>
         </div>
     </section>
+    <br>
 @stop
