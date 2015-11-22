@@ -1,3 +1,5 @@
+@extends('layouts.mask')
+
 {!! csrf_field() !!}
 
 <div class="form-group" >
@@ -17,7 +19,7 @@
 <div class="form-group">
     {!! Form::label('fone', 'Fone:', array('class' => 'col-md-2 control-label')) !!}
     <div class="col-sm-9">
-        {!! Form::text('fone', Input::old('fone'), array('class' => 'form-control', 'placeholder' => 'Digite apenas os numeros', 'id' => 'fone')) !!}
+        {!! Form::text('fone', Input::old('fone'), array('class' => 'form-control phone', 'placeholder' => 'Ex.: (00) 0000-0000', 'id' => 'fone')) !!}
     </div>
 </div>
 
