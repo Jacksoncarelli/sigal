@@ -3,14 +3,14 @@
 <div class="form-group">
     {!! Form::label('nome', 'Nome:', array('class' => 'col-md-2 control-label')) !!}
     <div class="col-sm-9">
-        {!! Form::text('nome', Input::old('nome_au'), array('class' => 'form-control', 'placeholder' => 'Nome do professor')) !!}
+        {!! Form::text('nome', Input::old('nome_au'), array('class' => 'form-control', 'placeholder' => 'Nome do professor','required' => 'required'))  !!}
     </div>
 </div>
 
 <div class="form-group">
     {!! Form::label('Curso', 'RA:', array('class' => 'col-md-2 control-label')) !!}
     <div class="col-sm-4">
-        {!! Form::text('ra', Input::old('ra'), array('class' => 'form-control', 'placeholder' => 'RA')) !!}
+        {!! Form::text('ra', Input::old('ra'), array('class' => 'form-control', 'placeholder' => 'RA','required' => 'required')) !!}
     </div>
     {!! Form::label('cgu', 'CGU:', array('class' => 'col-md-1 control-label')) !!}
     <div class="col-sm-4">

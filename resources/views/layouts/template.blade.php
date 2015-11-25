@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/html">
+<html lang="pt-br">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,14 +22,6 @@
     <script src="{{ asset('/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('/assets/bootstrap/js/bootstrap.min.js') }}"></script>
 
-    <style>
-        body {
-            margin: 0 0 60px; /* altura do seu footer */
-            height: 730px;
-        }
-
-
-    </style>
 
     @yield('script')
 
@@ -93,6 +85,7 @@
     <div class="conteudo">
         @yield('content')
     </div>
+    <script src="{{ asset('/js/validaform.js') }}"></script>
 </body>
 
     <div class="rodape">

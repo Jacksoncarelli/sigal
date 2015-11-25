@@ -1,13 +1,6 @@
 @extends('layouts.template')
 
-@section('script')
-    <!-- A pagina não está pegando o jQuery do layout -->
-    <script src="{{ asset('/bower_components/jquery/dist/jquery.min.js') }}"></script>
-@endsection
-
 @section('content')
-    <script src="/js/filtro2.js"></script>
-    <script src="/js/filtro.js"></script>
 
 
     <section class="wrap">
@@ -21,25 +14,16 @@
             <p></p>
             <legend></legend>
             <div class="row">
-                <div class="panel panel-primary filterable">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
-
                         <h3 class="panel-title">Salas</h3>
-                        <div class="pull-right">
-                            <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filtro</button>
-                        </div>
 
                     </div>
-                    <table class="table table-bordered table-hover  table-zebra">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
                         <thead>
-                        <tr class="filters">
-                            <th><input type="text" class="form-controltablepequeno" placeholder="Prédio" ></th>
-                            <th><input type="text" class="form-controltablepequeno" placeholder="Andar" ></th>
-                            <th><input type="text" class="form-controltablepequeno" placeholder="Número" ></th>
-                            <th><input type="text" class="form-controltablepequeno" placeholder="Capacidade" ></th>
-                        </tr>
-                        </thead>
-                        <thead>
+
 
                         <tr>
                             <th>Prédio</th>
@@ -47,8 +31,8 @@
                             <th>Número</th>
                             <th>Capacidade</th>
                             <th>Tipo</th>
-                            <th>Opções</th>
-
+                            <th width="20%">Opções</th>
+                        </tr>
                         </thead>
                         <tbody>
                         @foreach($salas as $sala)

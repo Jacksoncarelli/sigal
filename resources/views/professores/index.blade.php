@@ -14,24 +14,18 @@
 
             <div class="panel  panel-primary">
                 <div class="panel-heading">
-                    <div class="pull-right">
-                        <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filtro</button>
-                    </div>
                     <h3 class="panel-title"><i class="fa fa-male fa-fw"></i>Professores</h3>
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover table-striped">
+                        <table class="table table-bordered table-hover">
                             <thead>
-                            <thead>
-                            <tr class="filters">
-                                <th><input type="text" class="form-controltablepequeno" placeholder="Nome" ></th>
-                                <th><input type="text" class="form-controltablepequeno" placeholder="RA" ></th>
-                                <th><input type="text" class="form-controltablepequeno" placeholder="Curso" ></th>
-                            </tr>
 
-                            </thead>
-
+                            {{--<tr class="filters">--}}
+                                {{--<th><input type="text" class="form-controltablepequeno" placeholder="Nome" ></th>--}}
+                                {{--<th><input type="text" class="form-controltablepequeno" placeholder="RA" ></th>--}}
+                                {{--<th><input type="text" class="form-controltablepequeno" placeholder="Curso" ></th>--}}
+                            {{--</tr>--}}
 
                             <tr>
                                 <th>Nome</th>
@@ -40,7 +34,7 @@
                                 <th>CGU</th>
                                 <th>Email</th>
                                 <th>Fone</th>
-                                <th>Opções</th>
+                                <th width="20%">Opções</th>
                             </tr>
                             </thead>
                             <tbody>
