@@ -1,16 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>Área de login - Sigal</title>
-
-
-    <link rel="stylesheet" href="loginform/css/reset.css">
-
-    <link rel="stylesheet" href="loginform/css/style.css">
-
-
     <meta http-equiv="Content-Type" content="text/html; charset=utf8_encode" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,8 +37,8 @@
 </nav>
 
 @yield('content')
-<script src="{{ asset('/js/validaform.js') }}"></script>
-        <!-- Scripts -->
+
+<!-- Scripts -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
