@@ -1,17 +1,16 @@
 @extends('layouts.template')
 
 @section('content')
-<div class="container">
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
-			<div class="panel panel-default">
-				<div class="panel-heading">Home</div>
+	<link href="assets/home/style.css" rel="stylesheet">
 
-				<div class="panel-body">
-					You are logged in!
+	<div id="wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-12">
+					<img style="margin-top: 15%" src="assets/img/construcao.png">
 				</div>
+
 			</div>
 		</div>
 	</div>
-</div>
 @endsection
